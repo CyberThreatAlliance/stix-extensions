@@ -1,0 +1,13 @@
+{
+  "name": "Analysis Engine Artifacts",
+  "description": "This property-extension defines the artifacts from execution of an analysis engine.",
+  "id": "extension-definition--173999de-0cd1-4ba1-8650-b9ac987855e6",
+  "type": "extension-definition",
+  "spec_version": "2.1",
+  "version": "1.0.0",
+  "extension_types": [ "property-extension" ],
+  "created": "2024-10-18T00:00:00Z",
+  "modified": "2024-10-18T00:00:00Z",
+  "created_by_ref": "identity--41ee41cf-280a-4377-9738-3fa6bfcaf94d",
+  "schema": "https://magellan.cyberthreatalliance.ninja/public/stix/v21/extensions/schemas/analysis_engine_artifacts.json"
+}

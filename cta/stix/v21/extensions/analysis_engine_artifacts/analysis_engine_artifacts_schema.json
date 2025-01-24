@@ -1,0 +1,45 @@
+{
+  "$id": "https://magellan.cyberthreatalliance.ninja/public/stix/v21/extensions/definitions/analysis_engine_artifacts.json",
+  "$schema": "http://json-schema.org/draft/2020-12/schema#",
+  "title": "x-cta-analysis-engine-artifacts",
+  "description": "This property-extension defines the artifacts from execution of an analysis engine.",
+  "type": "object",
+  "allOf": [
+    {
+      "$ref": "http://raw.githubusercontent.com/oasis-open/cti-stix2-json-schemas/stix2.1/schemas/sdos/malware-analysis.json"
+    },
+    {
+      "properties": {
+        "extensions": {
+          "type": "object",
+          "properties": {
+            "extension-definition--173999de-0cd1-4ba1-8650-b9ac987855e6": {
+              "type": "object",
+              "properties": {
+                "extension_type": {
+                  "type": "string",
+                  "description": "extension_type, which MUST be the literal `property-extension`",
+                  "enum": [
+                    "property-extension"
+                  ]
+                },
+                "output": {
+                  "type": "string",
+                  "description": "Short human readable description of the `malware-analysis` output."
+                },
+                "risk": {
+                  "type": "string",
+                  "description": "Risk score based on the malware-analysis. The value of this property MUST be one of low, medium, high, really_really_bad.",
+                  "enum": [ "low", "medium", "high", "critical" ]
+                }
+              },
+              "required": [ "extension_type" ]
+            }
+          },
+          "required": [ "extension-definition--173999de-0cd1-4ba1-8650-b9ac987855e6" ]
+        }
+      }
+    }
+  ],
+  "required": [ "extensions" ]
+}
