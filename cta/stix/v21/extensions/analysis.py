@@ -11,9 +11,22 @@ ENGINE_ARTIFACTS_EXTENSION_ID = \
     'extension-definition--173999de-0cd1-4ba1-8650-b9ac987855e6'
 
 
-@stix2.CustomExtension(ENGINE_ARTIFACTS_EXTENSION_ID, [
+@stix2.CustomExtension('x-analysis-engine-artifact-ext', [
     ('risk', stix2.properties.StringProperty(required=True)),
     ('output', stix2.properties.StringProperty(required=True))
+])
+class AnalysisEngineArtifact:  # pylint: disable=too-few-public-methods
+    """
+    Custom Extension for analysis engine artifact details.
+
+    Attributes:
+        extension_type (str): The type of the extension.
+    """
+    extension_type = 'property-extension'
+
+
+@stix2.CustomExtension(ENGINE_ARTIFACTS_EXTENSION_ID, [
+    ('outputs', stix2.properties.ListProperty(AnalysisEngineArtifact, required=False)),
 ])
 class AnalysisEngineArtifacts:  # pylint: disable=too-few-public-methods
     """
@@ -26,9 +39,16 @@ class AnalysisEngineArtifacts:  # pylint: disable=too-few-public-methods
 
 
 if __name__ == '__main__':
-    """
-    Main block to create and serialize a MalwareAnalysis example with the custom extension.
-    """
+    artifacts = []
+    artifacts.append(AnalysisEngineArtifact(
+                risk="high",
+                output='Example output'
+            ))
+    artifacts.append(AnalysisEngineArtifact(
+                risk="low",
+                output='Second example output'
+            ))
+
     MAExample = stix2.MalwareAnalysis(
         product='ThreatGrid',
         analysis_engine_version="0.0.0",
@@ -37,8 +57,7 @@ if __name__ == '__main__':
         result='malicious',
         extensions={
             ENGINE_ARTIFACTS_EXTENSION_ID: AnalysisEngineArtifacts(
-                risk="high",
-                output='Example output'
+                outputs = artifacts,
             )
         }
     )
