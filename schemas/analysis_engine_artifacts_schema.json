@@ -23,14 +23,23 @@
                     "property-extension"
                   ]
                 },
-                "output": {
-                  "type": "string",
-                  "description": "Short human readable description of the `malware-analysis` output."
-                },
-                "risk": {
-                  "type": "string",
-                  "description": "Risk score based on the malware-analysis. The value of this property MUST be one of low, medium, high, really_really_bad.",
-                  "enum": [ "low", "medium", "high", "critical" ]
+                "outputs": {
+                  "type": "array",
+                  "description": "Array of analysis ending outputs.",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "output": {
+                        "type": "string",
+                        "description": "Short human readable description of the `malware-analysis` output."
+                      },
+                      "risk": {
+                        "type": "string",
+                        "description": "Risk score based on the malware-analysis. The value of this property MUST be one of low, medium, high, really_really_bad.",
+                        "enum": [ "low", "medium", "high", "critical" ]
+                      }
+                    }
+                  }
                 }
               },
               "required": [ "extension_type" ]
